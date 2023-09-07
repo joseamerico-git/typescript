@@ -79,7 +79,7 @@ arquivo package.json
 
 # Tipos
 
-## Primitivos: boolean, number, string 
+### Primitivos: boolean, number, string 
 ### Como declarar
 
 let ligado:boolean = false --> pode ser tipado

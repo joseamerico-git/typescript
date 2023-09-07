@@ -26,8 +26,12 @@ mkdir src                     // Cria a pasta onde ficarão os códigos
 # Configurações do arquivo tsconfig.json principais
 
 
-![Alt text](image.png)   - Desmarcamos os comentários desta linha e alteramos para ./src 
-![Alt text](image-2.png)- Faremos o mesmo, em OutDir, mas apontamos para a pata ./build 
+- ![Alt text](assets/images/image.png)   
+- Desmarcamos os comentários desta linha e alteramos para ./src 
+
+- ![Alt text](assets/images/image-2.png) 
+- Faremos o mesmo, em OutDir, mas apontamos para a pata ./build 
+
 
 # Aprofundando em TS
 
@@ -81,7 +85,7 @@ node index.ts
 
 # Para alterar a maneira de chamar o programa adicionando um comando mais simpes alteramos o arquivo package.json
 
-![Alt text](image-5.png)
+![Alt text](assets/images/image-5.png)
 
 "start":"npx tsc && node build/index.j"
 
