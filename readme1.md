@@ -1,4 +1,6 @@
 
+# TypeScript é um superconjunto de JavaScript, ou seja, um conjunto de ferramentas e formas mais eficientes de escrever código JavaScript, ...
+
 # Configurando o TypeScript com Node.js
 
 ## Abra o terminal dentro da pasta e digite os comandos abaixo:
@@ -118,12 +120,13 @@ Tudo configurado? Então vamos por a mão na massa..
 
 ### Primitivos: boolean, number, string 
 ### Como declarar
-```
+
 console.log("Bem Vindo ao Artigo!")
-//Declaração de variáveis 
+
+# Declaração de variáveis 
 
 let ligado: boolean = false //--> pode ser tipado
-//ou 
+# ou 
 let ligado1 = false //--> vai funcionar por inferência, mas isso pode causar problemas pois a variável está sujeita a receber outros valores 
 
 let nome: string = "Jose";
@@ -131,23 +134,24 @@ let idade: number = 30
 let altura: number = 1.9;
 
 
-//# Tipos especiais
+# Tipos especiais
 
 let nulo: null = null //só pode receber um nulo não permite outro valor vai ser nulo e .
 let indefinido: undefined = undefined; //Ajuda a manter a estratégia específica de variáveis
 
-//# Tipos Abrangentes
+# Tipos Abrangentes
 //-any  (qualquer coisa)
 //-void (vazio) sem retorno retorno vazio.
 
 let retornoView: any = "qualquer valor string ou numero etc..."//qualquer coisa valor não previsivel
 
-//# Objetos em TS
+# Objetos em TS
 
 //não pode receber qualquer coisa e sim objetos entre {}
 
-//# Objetos sem previsibilidade
-//Declarando um objeto sem shape
+# Objetos sem previsibilidade
+
+## Declarando um objeto sem shape
 
 let produto: object = {
     name: "Jose",
@@ -155,8 +159,8 @@ let produto: object = {
     idade: 40,
 }
 
-//Objetos com previsibilidade
-//Objeto Shapado ou com forma específicada
+#Objetos com previsibilidade
+## Objeto Shapado ou com forma específicada
 
 //Struct perde a previsibilidade
 type ProdutoLoja = {
@@ -181,9 +185,9 @@ let meuProduto1: ProdutoLoja = {
     unidades: 100,
 }
 
-// Arrays ou vetores 
+# Arrays ou vetores 
 
-//Maneiras de declarar ********************************
+# Maneiras de declarar ********************************
 
 let dados: string[] = ["JOSE", "ALINE", "JOAQUIM"]
 
@@ -191,9 +195,9 @@ let dados: string[] = ["JOSE", "ALINE", "JOAQUIM"]
 
 let dados1: Array<string> = ["JOSE", "ALINE", "JOAQUIM"]
 
-//******************************************************
+# ******************************************************
 
-// Arrays Multi types [ | ] o pipe significa ou
+# Arrays Multi types [ | ] o pipe significa ou
 
 let infos: (string | number)[] = ["Jose", 1, 2, "Aline"] //tomar cuidado com esses tipos de vetores talvez seria melhor criar objetos shapados para não cair em armadilhas
 
@@ -211,8 +215,8 @@ dados.push(), .pop(), .filter() etc...
 let aniversario: Date = new Date("2022-12-01 05:00")
 console.log(aniversario.toString())
 
-// Funções em TS são as mesmas do js normal
-//O que diferênia é que podem ser tipados os valores de entrada e de retorno
+# Funções em TS são as mesmas do js normal
+## O que diferênia é que podem ser tipados os valores de entrada e de retorno
 
 function addNumber(x: number, y: number): number {
     return x + y
@@ -228,9 +232,9 @@ function addToHello(name: string): string {
 
 console.log(addToHello("José Américo"))
 
-// Funções Multi Types --> suponhamos que você quer pegar dados do BD e você espera uma string, porém por alguma eventualidade ele retorna um null ou número etc..
+# Funções Multi Types --> suponhamos que você quer pegar dados do BD e você espera uma string, porém por alguma eventualidade ele retorna um null ou número etc..
 
-// Precisamos preparar as funções para essas eventualidades
+# Precisamos preparar as funções para essas eventualidades
 
 //especícicando o tipo de retorno, mais por sintaxe
 // ou any --> porém perde o sentido de utilizar typescript
@@ -244,7 +248,7 @@ console.log(callToPhone(12345678))
 console.log(callToPhone("12345"))
 
 
-//Funções Async --> assincronas
+# Funções Async --> assincronas
 
 //implicitamente ele entende que o retorno é Promise, porém podemos passar o retorno Promise<tipo de valor especificado> tornando mais explícot, quanto mais explícito o código melhor...
 
@@ -253,7 +257,7 @@ async function getDatabase(id: number): Promise<string> {
 }
 
 
-//Interfaces (Type x Funções)
+# Interfaces (Type x Funções)
 
 type robot = {
     id: number, // ou id:number | string; a segunda opção a propriedade torna-se multitype
@@ -299,7 +303,7 @@ console.log(bot)
 console.log(bot2)
 console.log(bot3) //console.log(bot3.nome) --> não estaria acessível
 
-//Quando utilizar interfaces (se comportam da mesma maneira, porém com algumas peculiaridades)
+# Quando utilizar interfaces (se comportam da mesma maneira, porém com algumas peculiaridades)
 
 class Pessoa implements robot2 {
     id: string | number;
@@ -314,17 +318,17 @@ class Pessoa implements robot2 {
     }
 }
 
-//Como utilizar a classe Pessoa
+# Como utilizar a classe Pessoa
 
 const pessoa = new Pessoa(1, "joseameircojunior");
 console.log(pessoa.sayHello())
 
 
-//Aprofundando types e interfaces são bem parecidos, recomenda-se trabalhar com type para tipar variáveis e interfaces para tipar objetos.
+# Aprofundando types e interfaces são bem parecidos, recomenda-se trabalhar com type para tipar variáveis e interfaces para tipar objetos.
 
-//Quando inteface e type são transpilados -> no arquivo convertido .js são identicos, porém .ts tem mais significado para o desenvolvedor porquê permite diferenciar na hora de desnvolver o código.
+# Quando inteface e type são transpilados -> no arquivo convertido .js são identicos, porém .ts tem mais significado para o desenvolvedor porquê permite diferenciar na hora de desnvolver o código.
 
-//Classes são formas que são criadas para ser o molde de nossos objetos.
+# Classes são formas que são criadas para ser o molde de nossos objetos.
 
 
 class Personagem {
@@ -402,14 +406,15 @@ const furta = new Frutas("Banana");
 // furta.getNome() --> não funciona poerque foi declarado private
 
 
-// O que influência nas classe public ou private segue a mesma lógica ex: private | protected | readonly | ? opcional | as regras de modificadores de acesso servem para atributos ou métodos 
-// Isso infuência na hora de instânciar os objetos.. não acessível ou acessível dentro ou fora da classe
+# O que influência nas classe public ou private segue a mesma lógica ex: private | protected | readonly | ? opcional | as regras de modificadores de acesso servem para atributos ou métodos 
+## Isso infuência na hora de instânciar os objetos.. não acessível ou acessível dentro ou fora da classe
 
-// Subclasses
+# Subclasses
 
 
-//Magico é uma subclasse de Personagem
-//Personagem super classe Magico subclasse
+# Magico é uma subclasse de Personagem
+# Personagem super classe Magico subclasse
+
 class Magico extends Personagem {
 
     magicPoints: number;
@@ -424,13 +429,13 @@ class Magico extends Personagem {
 const p2 = new Magico("Mago", 9, 30, 300);
 p2.skill = 2;
 
-//Generics --> fui comprar um remédio específico (eu já tenho em mente o que eu gostaria de levar), porém o farmaceutico não tem esse, mas tem um genérico.
+# Generics --> fui comprar um remédio específico (eu já tenho em mente o que eu gostaria de levar), porém o farmaceutico não tem esse, mas tem um genérico.
 
-// Temos uma função que temos dois arrays e preciso juntar em um só
-//... aceito vários arrays
+#  Temos uma função que temos dois arrays e preciso juntar em um só
+# ... aceito vários arrays
 function concatArray(...itens: any[]): any[] {
 
-    // os ... são spreads para concatenar
+    // os [...] são spreads para concatenar
     return new Array().concat(...itens);
 
 }
@@ -441,7 +446,9 @@ const stgArray = concatArray(["felipe", "goku"], ["viega"])
 
 console.log(numArray)
 console.log(stgArray)
-// tudo funcionando só que quebramos uma régra permite adicionar string no array de numeros    numArray.push("saitama") 
+
+# tudo funcionando só que quebramos uma régra permite adicionar string no array de numeros    numArray.push("saitama") 
+
 // caso eu queira especificar qual tipo de parametro eu quero que seja retornado.
 
 //Resolução para a função que retorna any -> específicar o tipo que eu quero 
@@ -494,7 +501,8 @@ function apiVerison(version: string) {
 }
 
 
-//O metodo sobescreve obedecendo o comportamento de teste < ou >  podemos implementar vários comportamentos nos decorators.
+# O metodo sobescreve obedecendo o comportamento de teste < ou >  podemos implementar vários comportamentos nos decorators.
+
 function mainLenght(lenght: number) {
     return (target: any, key: string) => {
      
@@ -532,13 +540,13 @@ const api = new Api("pxxxxxxxxxxxx");
 console.log(api.name);
 
 
-// Atribute Decorator colocado sobre propriedade
+# Atribute Decorator colocado sobre propriedade
 
 
 
 
-```
-Vide o código:
+
+# Vide o código:
 
 [index.ts](index.ts)
 
@@ -576,7 +584,7 @@ npm run start:dev
 
 ```
 
-Isso cria um servidor local de typescript para facilitar as compilações na hora de desnvolver.
+# Isso cria um servidor local de typescript para facilitar as compilações na hora de desnvolver.
 
 
 # Principio dos Decorators
