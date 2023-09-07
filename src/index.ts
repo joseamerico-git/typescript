@@ -210,7 +210,7 @@ class Personagem {
     name?: string; // name?: string; [?] significa opcional
     forca: number;
     skill: number;
-    constructor(name:string,forca: number, skill: number) {
+    constructor(name: string, forca: number, skill: number) {
         // this.name = name;
         this.forca = forca;
         this.skill = skill;
@@ -223,7 +223,7 @@ class Personagem {
 
 }
 
-const p1 = new Personagem("ciclop",20, 4000);
+const p1 = new Personagem("ciclop", 20, 4000);
 p1.attack() //já retorna um console.log pois é do tipo void
 
 // Trabalhando com Modifiers -> modificadores de acesso
@@ -239,18 +239,18 @@ class Carro {
     private nome: string;
     cor: string;
 
-    constructor(id:number,nome:string,cor:string){
-        this.id =id;
+    constructor(id: number, nome: string, cor: string) {
+        this.id = id;
         this.nome = nome;
         this.cor = cor;
     }
 
-    acelerar():void{
+    acelerar(): void {
         console.log(`Carro ${this.cor} ${this.nome} está acelerando!`)
     }
 }
 
-const carro = new Carro(122,"Fusca","vermelho")
+const carro = new Carro(122, "Fusca", "vermelho")
 carro.acelerar();
 //carro.name --> na classe Carro não estaria disponível, pois colocamos private dentro da class
 // Já o protected permite faz o mesmo, porém quem extender/herdar poderá enxergar esses atributos.
@@ -258,23 +258,23 @@ carro.acelerar();
 // Os data modifiers também pode ser aplicados em métodos da mesma forma
 
 class Frutas {
-    nome:string
-    
-    
-    
-    constructor(nome:string){
+    nome: string
+
+
+
+    constructor(nome: string) {
         this.nome = nome;
         this.imprime(nome);
     }
 
-    private getNome():void{
-        console.log( `Fruta ${nome}`)
+    private getNome(): void {
+        console.log(`Fruta ${nome}`)
     }
-    
-    imprime(nome:string):void{
+
+    imprime(nome: string): void {
         console.log(nome)
     }
-   
+
 }
 
 const furta = new Frutas("Banana");
@@ -289,58 +289,129 @@ const furta = new Frutas("Banana");
 
 //Magico é uma subclasse de Personagem
 //Personagem super classe Magico subclasse
-class Magico extends Personagem{
-   
+class Magico extends Personagem {
+
     magicPoints: number;
-   
-    constructor(name:string,poder: number,skill: number,magicPoints:number) {
-        super(name,poder,skill);
+
+    constructor(name: string, poder: number, skill: number, magicPoints: number) {
+        super(name, poder, skill);
         this.magicPoints = magicPoints;
     }
-    
+
 }
 
-const p2 = new Magico("Mago",9,30,300);
-p2.skill =2;
+const p2 = new Magico("Mago", 9, 30, 300);
+p2.skill = 2;
 
 //Generics --> fui comprar um remédio específico (eu já tenho em mente o que eu gostaria de levar), porém o farmaceutico não tem esse, mas tem um genérico.
 
 // Temos uma função que temos dois arrays e preciso juntar em um só
-                     //... aceito vários arrays
-function concatArray (...itens: any[]):any[]{
+//... aceito vários arrays
+function concatArray(...itens: any[]): any[] {
 
-                                // os ... são spreads para concatenar
+    // os ... são spreads para concatenar
     return new Array().concat(...itens);
-    
+
 }
-const numArray = concatArray([1,5,[3]])
-const stgArray = concatArray(["felipe", "goku"],["viega"])
+const numArray = concatArray([1, 5, [3]])
+const stgArray = concatArray(["felipe", "goku"], ["viega"])
 
 
 
 console.log(numArray)
-console.log(stgArray) 
+console.log(stgArray)
 // tudo funcionando só que quebramos uma régra permite adicionar string no array de numeros    numArray.push("saitama") 
 // caso eu queira especificar qual tipo de parametro eu quero que seja retornado.
 
 //Resolução para a função que retorna any -> específicar o tipo que eu quero 
 
-                     //generics (em aberto o que vai ser passado) utilizamos o <T> dinâmico para especificar o retorno 
-function concatArray1<T> (...itens: any[]):any[]{
+//generics (em aberto o que vai ser passado) utilizamos o <T> dinâmico para especificar o retorno 
+function concatArray1<T>(...itens: any[]): any[] {
 
     // os ... são spreads para concatenar
-return new Array().concat(...itens);
+    return new Array().concat(...itens);
 
 }
-                              //<number[]> como o <T> foi específicado na função especificar na hora de chamar a função.
-const numArray1 = concatArray1<number[]>([1,6],[7]); 
-const strArray1 = concatArray1<string[]>(["jose"],["maria"])
+//<number[]> como o <T> foi específicado na função especificar na hora de chamar a função.
+const numArray1 = concatArray1<number[]>([1, 6], [7]);
+const strArray1 = concatArray1<string[]>(["jose"], ["maria"])
 
 console.log(numArray1)
 console.log(strArray1)
 
 
+let startDev = "Teste npm run start:dev"
+console.log(startDev)
 
+console.log("Agora quando salvo ele executa sem transpilar")
+
+//Decorators na vida real são: --> fui na padaria do zé você vê o leite. Ai você lembrou que sua mãe falou que quando visse o leite a menos de 3,00 você compra porque é vantagem. De tanto sua mãe falar você comprou. Você decorou então você executa alguma ação.
+
+// Decorators na programação @nomeMetodo
+
+
+function ExibirNome(target: any) {
+    return console.log(target)
+}
+
+@ExibirNome
+class Funcionario {
+
+}
+
+@ExibirNome
+class Quincas {
+
+}
+
+//Suponhamos que temos várias classes que são apis e queremos documentar 
+
+function apiVerison(version: string) {
+    return (target: any) => {
+        Object.assign(target.prototype, { __version: version, __name: "José" })
+    }
+}
+
+
+//O metodo sobescreve obedecendo o comportamento de teste < ou >  podemos implementar vários comportamentos nos decorators.
+function mainLenght(lenght: number) {
+    return (target: any, key: string) => {
+     
+        let _value = target[key];
+        
+        const getter = () => "[play] " + _value;
+        const setter = (value: string) => {
+            if(value.length<lenght){
+                throw new Error(`Tamanho menor do que ${lenght}`)
+            }else {
+                _value = value;
+            }
+        };
+        Object.defineProperty(target, key, {
+            get: getter,
+            set: setter,
+        });
+
+        
+    }
+};
+
+
+class Api {
+    @mainLenght(10)
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+}
+
+const api = new Api("pxxxxxxxxxxxx");
+console.log(api.name);
+
+
+// Atribute Decorator colocado sobre propriedade
 
 
 

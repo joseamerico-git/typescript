@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -198,3 +204,64 @@ const numArray = concatArray([1, 5, [3]]);
 const stgArray = concatArray(["felipe", "goku"], ["viega"]);
 console.log(numArray);
 console.log(stgArray);
+// tudo funcionando só que quebramos uma régra permite adicionar string no array de numeros    numArray.push("saitama") 
+// caso eu queira especificar qual tipo de parametro eu quero que seja retornado.
+//Resolução para a função que retorna any -> específicar o tipo que eu quero 
+//generics (em aberto o que vai ser passado) utilizamos o <T> dinâmico para especificar o retorno 
+function concatArray1(...itens) {
+    // os ... são spreads para concatenar
+    return new Array().concat(...itens);
+}
+//<number[]> como o <T> foi específicado na função especificar na hora de chamar a função.
+const numArray1 = concatArray1([1, 6], [7]);
+const strArray1 = concatArray1(["jose"], ["maria"]);
+console.log(numArray1);
+console.log(strArray1);
+let startDev = "Teste npm run start:dev";
+console.log(startDev);
+console.log("Agora quando salvo ele executa sem transpilar");
+//Decorators na vida real são: --> fui na padaria do zé você vê o leite. Ai você lembrou que sua mãe falou que quando visse o leite a menos de 3,00 você compra porque é vantagem. De tanto sua mãe falar você comprou. Você decorou então você executa alguma ação.
+// Decorators na programação @nomeMetodo
+function ExibirNome(target) {
+    return console.log(target);
+}
+let Funcionario = class Funcionario {
+};
+Funcionario = __decorate([
+    ExibirNome
+], Funcionario);
+let Quincas = class Quincas {
+};
+Quincas = __decorate([
+    ExibirNome
+], Quincas);
+//Suponhamos que temos várias classes que são apis e queremos documentar 
+function apiVerison(version) {
+    return (target) => {
+        Object.assign(target.prototype, { __version: version, __name: "José" });
+    };
+}
+function mainLenght(lenght) {
+    return (target, key) => {
+        let _value = target[key];
+        const getter = () => "[play]" + _value;
+        const setter = (value) => {
+        };
+        Object.defineProperty(target, key, {
+            get: getter,
+            set: setter,
+        });
+    };
+}
+;
+class Api {
+    constructor(name) {
+        this.name = name;
+    }
+}
+__decorate([
+    mainLenght(10)
+], Api.prototype, "name", void 0);
+const api = new Api("pxxxxxxxxx");
+console.log(api.name);
+// Atribute Decorator colocado sobre propriedade
